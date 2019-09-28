@@ -81,6 +81,15 @@ function Game(props) {
       return <Redirect to="/" />
   }
 
+  if (winner != 0) {
+    return <Redirect to={{
+        pathname: "/end",
+        state: {
+            winner: props.location.state.names[winner - 1]
+        }
+    }}/>
+  }
+
   return (
     <div>
         <Table

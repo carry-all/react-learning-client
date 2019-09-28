@@ -5,7 +5,7 @@ function End(props) {
 
     return (
     <div>
-        <h1>End</h1>
+        <h1>{props.location.state.winner} has won!</h1>
         <Link to="/game" >Start again</Link>
     </div>
     );
