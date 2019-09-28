@@ -34,33 +34,46 @@ function App() {
     field[columnId] = column;
     setField(field);
 
-    let flatField = [];
-    field.forEach((v) => {
-      flatField = flatField.concat(v, 3);
-    });
-
-      for(let i = 0; i < columnHeight; i++) {
-        for(let j = 0; j < columns; j++) {
-        flatField = flatField.concat(field[j][i]);
-      }
-      flatField = flatField.concat(3);
-    }
-
-    flatField = flatField.filter((v) => v !== 0);
-
-    for (let i = 0; i < flatField.length - 3; i++) {
-      let slice = flatField.slice(i, i + 4);
-
-      if ((slice[0] === slice[1]) &&
-      (slice[1] === slice[2]) &&
-      (slice[2] === slice[3]) &&
-      (slice[0]) !== 3) {
-        setWinner(slice[0]);
-        console.log('Found winner ' + winner);
-      }
-    }
+    calculateWinner();
 
     console.log('Move to columnId ' + columnId);
+
+    function calculateWinner() {
+      checkLines();
+      checkDiagonals();
+
+      function checkDiagonals() {
+        // todo
+      }
+
+      function checkLines() {
+        let flatField = flattenField();
+        for (let i = 0; i < flatField.length - 3; i++) {
+          let slice = flatField.slice(i, i + 4);
+          if ((slice[0] === slice[1]) &&
+            (slice[1] === slice[2]) &&
+            (slice[2] === slice[3]) &&
+            (slice[0]) !== 3) {
+            setWinner(slice[0]);
+            console.log('Found winner ' + winner);
+          }
+        }
+      }
+
+      function flattenField() {
+        let flatField = [];
+        field.forEach((v) => {
+          flatField = flatField.concat(v, 3);
+        });
+        for (let i = 0; i < columnHeight; i++) {
+          for (let j = 0; j < columns; j++) {
+            flatField = flatField.concat(field[j][i]);
+          }
+          flatField = flatField.concat(3);
+        }
+        return flatField;
+      }
+    }
   }
 
   return (
