@@ -1,7 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 function End(props) {
+
+    if (!props.location.state) {
+        return <Redirect to="/" />
+    }
 
     return (
     <div>
