@@ -70,6 +70,8 @@ function Game(props) {
           }
           flatField = flatField.concat(3);
         }
+        flatField = flatField.filter((v) => v !== 0);
+
         return flatField;
       }
     }
