@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Table from '../table';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+import bluebird from 'bluebird';
 
 function Game(props) {
   const [currentPlayer, setCurrentPlayer] = useState(2);
@@ -21,12 +22,12 @@ function Game(props) {
 
   useEffect(() => {
     const request = axios.get("http://localhost:4000/info");
-      const data = request.then((response) => {
-        setField(response.data.field);
-        setCurrentPlayer(response.data.currentPlayer);
-        setWinner(response.data.winner);
-        console.log("I'm here");
-      })
+    const data = request.then((response) => {
+    setField(response.data.field);
+    setCurrentPlayer(response.data.currentPlayer);
+    setWinner(response.data.winner);
+    console.log("I'm here");
+    })
   }, [] /* means doesn't track changes */);
 
   function move(columnId) {
