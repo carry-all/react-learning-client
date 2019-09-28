@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Table from '../table';
-import { arrayExpression } from '@babel/types';
+import { Redirect } from 'react-router-dom';
 
 function Game(props) {
   const [currentPlayer, setCurrentPlayer] = useState(2);
@@ -75,10 +75,18 @@ function Game(props) {
     }
   }
 
+  if (!props.location.state) {
+      return <Redirect to="/" />
+  }
+
   return (
     <div>
-        <p>{props.location.state.names[0]} vs {props.location.state.names[1]}</p>
-        <Table field={field} currentPlayer={currentPlayer} winner={winner} onColumnPress={move} />
+        <Table
+            field={field}
+            currentPlayer={props.location.state.names[currentPlayer - 1]}
+            winner={winner}
+            onColumnPress={move}
+        />
     </div>
   );
 } 
