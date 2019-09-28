@@ -7,8 +7,8 @@ import { HashRouter, Route } from 'react-router-dom';
 function App() {
   return (
     <HashRouter>
-      <Route path="/" component={Welcome} />
-      <Route path="/game" component={Game} />
+      <Route path="/" exact component={Welcome} />
+      <Route path="/game" exact component={Game} />
     </HashRouter>
   );
 } 
