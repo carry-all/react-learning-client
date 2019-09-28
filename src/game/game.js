@@ -21,13 +21,15 @@ function Game(props) {
   const [winner, setWinner] = useState(0);
 
   useEffect(() => {
-    const request = axios.get("http://localhost:4000/info");
-    const data = request.then((response) => {
-    setField(response.data.field);
-    setCurrentPlayer(response.data.currentPlayer);
-    setWinner(response.data.winner);
-    console.log("I'm here");
-    })
+      setInterval(() => {
+        const request = axios.get("http://localhost:4000/info");
+        const data = request.then((response) => {
+        setField(response.data.field);
+        setCurrentPlayer(response.data.currentPlayer);
+        setWinner(response.data.winner);
+        console.log("I'm here");
+        })
+      }, 2000);
   }, [] /* means doesn't track changes */);
 
   function move(columnId) {
