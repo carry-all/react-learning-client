@@ -7,23 +7,27 @@ function Game(props) {
   const [currentPlayer, setCurrentPlayer] = useState(2);
 
   const [field, setField] = useState([
-    [0, 0, 0, 0, 0, 0, ],
+    [2, 0, 0, 0, 0, 0, ],
     [1, 0, 0, 0, 0, 0, ],
-    [0, 0, 0, 0, 0, 0, ],
     [1, 0, 0, 0, 0, 0, ],
-    [2, 1, 0, 0, 0, 0, ],
-    [2, 2, 1, 0, 0, 0, ],
-    [0, 0, 0, 0, 0, 0, ],
+    [1, 0, 0, 0, 0, 0, ],
+    [2, 0, 0, 0, 0, 0, ],
+    [1, 0, 0, 0, 0, 0, ],
+    [1, 0, 0, 0, 0, 0, ],
   ]);
   const columns = field.length;
   const columnHeight = field[0].length;
   const [winner, setWinner] = useState(0);
 
   useEffect(() => {
-      const data = axios.get("http://localhost:4000/info").then((data) => {
-        console.log(data);
+    const request = axios.get("http://localhost:4000/info");
+      const data = request.then((response) => {
+        setField(response.data.field);
+        setCurrentPlayer(response.data.currentPlayer);
+        setWinner(response.data.winner);
+        console.log("I'm here");
       })
-  })
+  }, [] /* means doesn't track changes */);
 
   function move(columnId) {
     if (winner !== 0) {
