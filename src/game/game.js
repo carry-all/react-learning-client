@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Table from '../table';
 import { Redirect } from 'react-router-dom';
+import axios from 'axios';
 
 function Game(props) {
   const [currentPlayer, setCurrentPlayer] = useState(2);
@@ -17,6 +18,12 @@ function Game(props) {
   const columns = field.length;
   const columnHeight = field[0].length;
   const [winner, setWinner] = useState(0);
+
+  useEffect(() => {
+      const data = axios.get("http://localhost:4000/info").then((data) => {
+        console.log(data);
+      })
+  })
 
   function move(columnId) {
     if (winner !== 0) {
