@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Table from '../table';
 import { arrayExpression } from '@babel/types';
 
-function Game() {
+function Game(props) {
   const [currentPlayer, setCurrentPlayer] = useState(2);
 
   const [field, setField] = useState([
@@ -76,7 +76,10 @@ function Game() {
   }
 
   return (
-    <Table field={field} currentPlayer={currentPlayer} winner={winner} onColumnPress={move} />
+    <div>
+        <p>{props.location.state.names[0]} vs {props.location.state.names[1]}</p>
+        <Table field={field} currentPlayer={currentPlayer} winner={winner} onColumnPress={move} />
+    </div>
   );
 } 
 

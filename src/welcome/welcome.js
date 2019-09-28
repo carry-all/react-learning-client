@@ -5,7 +5,12 @@ function Welcome(props) {
     return (
     <div>
         <h1>Welcome</h1>
-        <Link to="/game" >Begin the game</Link>
+        <Link to={{
+            pathname: '/game',
+            state: {
+                names: ['Bobr', 'Igor']
+            }
+        }} >Begin the game</Link>
     </div>
     );
 }
