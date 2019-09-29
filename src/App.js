@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import './App.css';
 import Game from './game/game';
 import Welcome from './welcome/welcome';
