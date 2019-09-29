@@ -21,7 +21,7 @@ function Game(props) {
   const [winner, setWinner] = useState(0);
 
   useEffect(() => {
-      setInterval(() => {
+      const intervalId = setInterval(() => {
         const request = axios.get("http://localhost:4000/info");
         const data = request.then((response) => {
         setField(response.data.field);
@@ -30,9 +30,21 @@ function Game(props) {
         console.log("I'm here");
         })
       }, 2000);
+
+      return () => {
+          clearInterval(intervalId);
+      }
   }, [] /* means doesn't track changes */);
 
   function move(columnId) {
+    const request = axios.post("http://localhost:4000/move", {column: columnId});
+    const data = request.then((response) => {
+    setField(response.data.field);
+    setCurrentPlayer(response.data.currentPlayer);
+    setWinner(response.data.winner);
+    console.log("I'm here");
+    })
+
     if (winner !== 0) {
       return;
     }
