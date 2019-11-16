@@ -3,6 +3,7 @@ import Game from './game/game';
 import Welcome from './welcome/welcome';
 import End from './end/end';
 import { HashRouter, Route } from 'react-router-dom';
+import React from 'react';
 
 function App() {
   return (
